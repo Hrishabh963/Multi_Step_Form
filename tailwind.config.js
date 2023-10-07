@@ -20,7 +20,8 @@ module.exports = {
                 'sidebar_mobile': "url('./assets/images/bg-sidebar-mobile.svg')"
             },
             screens: {
-                'mobile': "389px"
+                'mobile': "389px",
+                'desktop': "790px"
             }
         },
     },
