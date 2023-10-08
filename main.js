@@ -3,14 +3,55 @@ const formData = [{
         p_email: null,
         p_phone: null
     }, {
-
+        plan: null,
+        yearlyToggle: false
     },
     {
 
     }
 ];
+
+const subscriptionValues = [9, 12, 15];
+const servicePrice = [1, 2, 2];
+
 const progressCss = ['text-black', 'bg-Light_blue', 'border-Light_blue'];
 let currPage = 1;
+
+const handleCard2 = (event) => {
+    const clickedCard = event.target.closest('.subscription-card');
+    if (!clickedCard) return;
+
+    const subscriptionCards = cardsContainer.querySelectorAll('.subscription-card');
+    subscriptionCards.forEach((card) => {
+        card.classList.remove('border-Marine_blue', 'bg-Magnolia');
+        card.classList.add('border-Cool_gray', 'bg-White');
+    });
+
+    clickedCard.classList.remove('border-Cool_gray', 'bg-White');
+    clickedCard.classList.add('border-Marine_blue', 'bg-Magnolia');
+
+    const planId = clickedCard.id;
+    formData[1]['plan'] = planId;
+
+}
+
+const handleToggle = (event) => {
+    const checked = event.target.checked;
+    const valueParas = document.querySelectorAll('.yearly_toggle');
+    const hiddenParas = document.querySelectorAll('.yearly_toggle_hidden');
+    const serviceArray = document.querySelectorAll('.service_price');
+    formData[1]['yearlyToggle'] = checked;
+
+    if (checked) {
+        valueParas.forEach((para, index) => para.innerText = `$${subscriptionValues[index]*10}/yr`)
+        hiddenParas.forEach((para) => para.classList.remove('hidden'));
+        serviceArray.forEach((para, index) => para.innerText = `+$${servicePrice[index]*10}/yr`);
+    } else {
+        valueParas.forEach((para, index) => para.innerText = `$${subscriptionValues[index]}/mo`)
+        hiddenParas.forEach((para) => para.classList.add('hidden'));
+        serviceArray.forEach((para, index) => para.innerText = `+$${servicePrice[index]}/mo`);
+    }
+}
 
 const changeProgress = (currPage) => {
     const progressDivs = document.getElementById('progress_bar').children;
@@ -72,7 +113,7 @@ const formCheck = (p_name, p_email, p_phone) => {
     }
 }
 
-const handleCards = (currPage, triggerId) => {
+const handleCardValues = (currPage, triggerId) => {
     if (currPage === 1) {
         if (triggerId === 'next_step') {
             const p_name = document.getElementById('p_name').value;
@@ -88,13 +129,20 @@ const handleCards = (currPage, triggerId) => {
         }
 
     }
+    if (currPage === 2) {
+        if (triggerId === 'next_step') {
+            if (!formData[1]['plan']) {
+                throw new Error(`Please select a plan`);
+            }
+        }
+    }
 }
 
 const moveForms = (event) => {
     const triggerId = event.target.id;
     try {
         if (triggerId === 'next_step') {
-            handleCards(currPage, triggerId);
+            handleCardValues(currPage, triggerId);
             currPage += 1;
             changeProgress(currPage);
             if (currPage <= 5) {
@@ -114,7 +162,7 @@ const moveForms = (event) => {
         if (triggerId === 'prev_step') {
             currPage -= 1;
             changeProgress(currPage);
-            handleCards(currPage, triggerId);
+            handleCardValues(currPage, triggerId);
             if (currPage > 0) {
                 const currCard = document.getElementById(`card${currPage+1}`);
                 const prevCard = document.getElementById(`card${currPage}`);
@@ -132,8 +180,11 @@ const moveForms = (event) => {
     }
 }
 const buttons_div = document.querySelector('.button_class');
-buttons_div.addEventListener('click', (event) => {
-    moveForms(event);
-})
+buttons_div.addEventListener('click', (event) => moveForms(event))
 
-changeProgress(currPage)
+const checkBox = document.getElementById('checkBox');
+checkBox.addEventListener('change', (event) => handleToggle(event))
+
+const cardsContainer = document.getElementById('subscription_container');
+cardsContainer.addEventListener('click', (event) => handleCard2(event));
+changeProgress(currPage);

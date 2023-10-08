@@ -67,35 +67,35 @@
                 <div id="card2" class="bg-white h-[100%] w-11/12 -mt-32 rounded-2xl flex-col p-7 desktop:w-[100%] desktop:mt-0 desktop:h-[70%] hidden">
                     <h2 class="h-10 text-3xl font-extrabold text-Marine_blue">Select Your Plan</h2>
                     <p class="text-Cool_gray text-lg w-10/12 mt-6 mb-3">You have the option of monthly or yearly billing.</p>
-                    <div class="flex flex-col h-[90%] desktop:flex-row desktop:justify-between desktop:w-[86%]">
-                        <div class="border border-Cool_gray rounded-md hover:border-Marine_blue h-[60%] w-11/12 items-center pl-3 flex desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
+                    <div id="subscription_container" class="flex flex-col h-[90%] desktop:flex-row desktop:justify-between desktop:w-[86%]">
+                        <div id="arcade" class="subscription-card border border-Cool_gray bg-White rounded-md hover:border-Marine_blue h-[60%] w-11/12 items-center pl-3 flex desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
                             <div class="basis-[30%]">
                                 <img src="/assets/images/icon-arcade.svg" class="w-1/2 desktop:w-full desktop:mt-2 desktop:mb-2" alt="Arcade">
                             </div>
                             <div class="basis-[60%] flex flex-col">
                                 <p class="text-Marine_blue font-semibold">Arcade</p>
-                                <p class="text-Cool_gray">$9/month</p>
-                                <p class="text-Marine_blue hidden">2 months free</p>
+                                <p class="text-Cool_gray yearly_toggle">$9/month</p>
+                                <p class="text-Marine_blue hidden yearly_toggle_hidden">2 months free</p>
                             </div>
                         </div>
-                        <div class="border border-Cool_gray flex rounded-md hover:border-Marine_blue mt-4 h-[60%] w-11/12 items-center pl-3 desktop:mt-0 desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
+                        <div id="advanced" class="subscription-card border border-Cool_gray bg-White flex rounded-md hover:border-Marine_blue mt-4 h-[60%] w-11/12 items-center pl-3 desktop:mt-0 desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
                             <div class="basis-[30%]">
                                 <img src="/assets/images/icon-advanced.svg" class="w-1/2 desktop:w-full desktop:mt-2 desktop:mb-2" alt="Advanced">
                             </div>
                             <div class="basis-[60%] flex flex-col">
                                 <p class="text-Marine_blue font-semibold">Advanced</p>
-                                <p class="text-Cool_gray">$12/month</p>
-                                <p class="text-Marine_blue hidden">2 months free</p>
+                                <p class="text-Cool_gray yearly_toggle">$12/month</p>
+                                <p class="text-Marine_blue hidden yearly_toggle_hidden">2 months free</p>
                             </div>
                         </div>
-                        <div class="border border-Cool_gray flex rounded-md hover:border-Marine_blue mt-4 h-[80%] w-11/12 items-center pl-3 desktop:mt-0 desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
+                        <div id="pro" class="subscription-card border border-Cool_gray bg-White flex rounded-md hover:border-Marine_blue mt-4 h-[80%] w-11/12 items-center pl-3 desktop:mt-0 desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
                             <div class="basis-[30%]">
                                 <img src="/assets/images/icon-pro.svg" class="w-1/2 desktop:w-full desktop:mt-2 desktop:mb-2" alt="Pro">
                             </div>
                             <div class="basis-[60%] flex flex-col">
                                 <p class="text-Marine_blue font-semibold">Pro</p>
-                                <p class="text-Cool_gray">$15/month</p>
-                                <p class="text-Marine_blue hidden">2 months free</p>
+                                <p class="text-Cool_gray yearly_toggle">$15/month</p>
+                                <p class="text-Marine_blue hidden yearly_toggle_hidden">2 months free</p>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     <div class="flex mt-8 justify-center h-20 bg-Magnolia rounded-md items-center desktop:w-[86%]">
                         <p class="text-Marine_blue mr-5 font-semibold">Monthly</p>
                         <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkBox">
                         <span class="slider round"></span>
                       </label>
                         <p class="text-Cool_gray font-semibold ml-5">Yearly</p>
@@ -112,34 +112,34 @@
                 <div id="card3" class="bg-white h-[70%] w-12/12 -mt-32 rounded-2xl flex-col p-7 desktop:mt-0 desktop:p-14 hidden">
                     <h2 class="h-10 text-3xl font-extrabold text-Marine_blue">Pick add-ons</h2>
                     <p class="text-Cool_gray text-lg w-10/12 mt-6 mb-3">Add-ons help enhance your gaming experience</p>
-                    <div class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
+                    <div id="online_service" class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
                         <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] checked:" name="checkbox" id="online"></div>
                         <div class="flex basis-[50%] flex-col">
                             <p>Online service</p>
                             <p>Access to multiplayer games</p>
                         </div>
                         <div class="flex basis-[20%]">
-                            <p>+$1/mo</p>
+                            <p class="service_price">+$1/mo</p>
                         </div>
                     </div>
-                    <div class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
+                    <div id="larger_storage" class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
                         <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7]" name="checkbox" id="larger"></div>
                         <div class="flex basis-[50%] flex-col">
                             <p>Larger Storage</p>
                             <p>Extra 1TB of cloud save</p>
                         </div>
                         <div class="flex basis-[20%]">
-                            <p>+$2/mo</p>
+                            <p class="service_price">+$2/mo</p>
                         </div>
                     </div>
-                    <div class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
+                    <div id="customizable_profile" class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
                         <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] checked:" name="checkbox" id="customised"></div>
                         <div class="flex basis-[50%] flex-col">
                             <p>Customizable profile</p>
                             <p>Custom theme on your profile</p>
                         </div>
                         <div class="flex basis-[20%]">
-                            <p>+$2/mo</p>
+                            <p class="service_price">+$2/mo</p>
                         </div>
                     </div>
                 </div>
