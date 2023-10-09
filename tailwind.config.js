@@ -23,13 +23,19 @@ module.exports = {
             screens: {
                 'mobile': "389px",
                 'desktop': "790px"
+            },
+            fontFamily: {
+                'Ubuntu': ['Ubuntu', 'sans - serif']
             }
         },
     },
     plugins: [
         plugin(function({ addBase }) {
             addBase({
-                'html': { fontSize: "16px" },
+                'html': {
+                    fontSize: "16px",
+
+                },
             })
         }),
     ],

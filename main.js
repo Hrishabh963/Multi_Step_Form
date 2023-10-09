@@ -23,10 +23,11 @@ const handleCard4 = () => {
     const servicesAdded = document.getElementById('services_added');
     servicesAdded.innerHTML = '';
     const tenure = formData[1]['yearlyToggle'] ? 'Yearly' : 'Monthly';
+    const totalTenure = formData[1]['yearlyToggle'] ? 'year' : 'month';
     serviceSelected.innerText = `${formData[1]['plan']}(${tenure})`;
     const serviceSelectedPrice = formData[1]['yearlyToggle'] ? subscriptionValues[formData[1]['index']] * 10 : subscriptionValues[formData[1]['index']];
     const tenureString = formData[1]['yearlyToggle'] ? 'yr' : 'mo';
-    servicePriceSelected.innerText = `$${serviceSelectedPrice}`;
+    servicePriceSelected.innerText = `$${serviceSelectedPrice}/${tenureString}`;
     total += serviceSelectedPrice;
     serviceChecked.forEach((isChecked, index) => {
         if (isChecked) {
@@ -34,18 +35,20 @@ const handleCard4 = () => {
             const priceString = `$${price}/${tenureString}`
             const div = document.createElement('div');
             div.classList.add(...['flex', 'h-1/3', 'w-[99%]', 'justify-between'])
-            const innerDivs = `<div class="flex flex-col basis[10%]">
-                <p>${services[index]}</p>
+            const innerDivs = `<div class="flex flex-col basis[10%] py-3">
+                <p class="text-sm text-Cool_gray">${services[index]}</p>
             </div>
-            <div class="flex flex-wrap basis[30%]">
-                <p>${priceString}</p>
+            <div class="flex flex-wrap basis[30%] py-3">
+                <p class="text-sm text-Cool_gray">${priceString}</p>
             </div>`
             div.innerHTML = innerDivs;
             servicesAdded.appendChild(div);
             total += price;
         }
     })
+    const totalText = document.getElementById('total_text');
     const totalPrice = document.getElementById('total_price');
+    totalText.innerText = `Total(per ${totalTenure})`
     totalPrice.innerText = `+${total}/${tenureString}`
 }
 
