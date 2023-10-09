@@ -16,6 +16,53 @@ const serviceChecked = [false, false, false];
 
 let currPage = 1;
 
+//Function to change the border of the form back to default value
+const changeInvalidBorder = (event) => {
+    if (event.target.tagName !== 'INPUT') {
+        return;
+    }
+    const inputEle = event.target;
+    const inputEleId = event.target.id;
+    if (inputEleId === 'p_name') {
+        const nameReq = document.getElementById('name_req');
+        nameReq.classList.add('hidden');
+        inputEle.classList.replace('border-Strawberry_red', 'border-Light_gray');
+    } else if (inputEle === 'p_email') {
+        const emailReq = document.getElementById('email_req');
+        emailReq.classList.add('hidden');
+        inputEle.classList.replace('border-Strawberry_red', 'border-Light_gray');
+    } else {
+        const phoneReq = document.getElementById('phone');
+        phoneReq.classList.add('hidden');
+        inputEle.classList.replace('border-Strawberry_red', 'border-Light_gray');
+    }
+}
+
+//Function to navigate back to subscription page on click of change
+const showSubscriptionPage = () => {
+    const progressCss = ['text-black', 'bg-Light_blue', 'border-Light_blue'];
+    const progressDivs = document.getElementById('progress_bar').children;
+    const progressDivArray = Array.from(progressDivs);
+    const nextHighlighted = progressDivArray[3].children.item(0);
+    const highlighted = progressDivArray[1].children.item(0);
+    const currCard = document.getElementById(`card4`);
+    const prevCard = document.getElementById(`card2`);
+    nextHighlighted.classList.replace(progressCss[0], 'text-White');
+    nextHighlighted.classList.remove(progressCss[1]);
+    nextHighlighted.classList.replace(progressCss[2], 'border-White');
+    highlighted.classList.replace('text-White', progressCss[0]);
+    highlighted.classList.add(progressCss[1]);
+    highlighted.classList.replace('border-White', progressCss[2]);
+    currCard.classList.add('hidden');
+    currCard.classList.remove('flex');
+    prevCard.classList.add('flex');
+    prevCard.classList.remove('hidden')
+    document.getElementById('next_step').classList.remove('hidden');
+    document.getElementById('confirm').classList.add('hidden');
+    currPage = 2;
+}
+
+//Function to render the summary page
 const handleCard4 = () => {
     let total = 0;
     const serviceSelected = document.getElementById('service_selected');
@@ -52,6 +99,7 @@ const handleCard4 = () => {
     totalPrice.innerText = `+${total}/${tenureString}`
 }
 
+//Function to add/remove extra services
 const handleServices = (event) => {
     if (event.target.type === 'checkbox') {
         const serviceCheckboxes = document.querySelectorAll('.service_checkbox');
@@ -70,6 +118,7 @@ const handleServices = (event) => {
     }
 }
 
+//Function to handle subscriptions 
 const handleCard2 = (event) => {
     const clickedCard = event.target.closest('.subscription-card');
     if (!clickedCard) return;
@@ -90,6 +139,7 @@ const handleCard2 = (event) => {
 
 }
 
+//Function to change all values to yearly
 const handleToggle = (event) => {
     const checked = event.target.checked;
     const valueParas = document.querySelectorAll('.yearly_toggle');
@@ -114,6 +164,7 @@ const handleToggle = (event) => {
     }
 }
 
+//Function that handles the sidebar movement
 const changeProgress = (currPage) => {
     const progressCss = ['text-black', 'bg-Light_blue', 'border-Light_blue'];
     const progressDivs = document.getElementById('progress_bar').children;
@@ -155,33 +206,63 @@ const changeProgress = (currPage) => {
     }
 }
 
+//Function to validate the form values
 const formCheck = (p_name, p_email, p_phone) => {
     if (p_name === '') {
-        throw new Error('Please enter your name');
+        const nameReq = document.getElementById('name_req');
+        const nameInput = document.getElementById('p_name');
+        nameReq.classList.remove('hidden');
+        nameInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
+        return false;
     }
     if (p_email === '') {
-        throw new Error('Please enter your email');
+        const emailReq = document.getElementById('email_req');
+        const emailInput = document.getElementById('p_email');
+        emailReq.innerText = 'This field is required.'
+        emailReq.classList.remove('hidden');
+        emailInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
+        return false;
     } else {
         let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
         let result = regex.test(p_email);
         if (!result) {
-            throw new Error('Please enter a valid email')
+            const emailReq = document.getElementById('email_req');
+            const emailInput = document.getElementById('p_email');
+            emailReq.innerText = 'Please enter a valid email.'
+            emailReq.classList.remove('hidden');
+            emailInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
+            return false;
         }
     }
     if (p_phone === '') {
-        throw new Error('Please enter your phone number')
+        console.log(`empty`);
+        const phoneReq = document.getElementById('phone');
+        const phoneInput = document.getElementById('p_phone');
+        phoneReq.innerText = 'This field is required.'
+        phoneReq.classList.remove('hidden');
+        phoneInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
+        return false;
     } else if (p_phone.length < 11) {
-        throw new Error('Please enter a valid phone number')
+        const phoneReq = document.getElementById('phone');
+        const phoneInput = document.getElementById('p_phone');
+        phoneReq.innerText = 'Please enter a valid phone number.'
+        phoneReq.classList.remove('hidden');
+        phoneInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
+        return false;
     }
+    return true;
 }
 
+//Function to handle the card values at different pages
 const handleCardValues = (currPage, triggerId) => {
     if (currPage === 1) {
         if (triggerId === 'next_step') {
             const p_name = document.getElementById('p_name').value;
             const p_email = document.getElementById('p_email').value;
             const p_phone = document.getElementById('p_phone').value;
-            formCheck(p_name, p_email, p_phone)
+            if (!formCheck(p_name, p_email, p_phone)) {
+                return false;
+            }
             formData[0] = { p_name, p_email, p_phone };
         } else {
             document.getElementById('p_name').value = formData[0]['p_name'];
@@ -189,13 +270,6 @@ const handleCardValues = (currPage, triggerId) => {
             document.getElementById('p_phone').value = formData[0]['p_phone'];
         }
 
-    }
-    if (currPage === 2) {
-        if (triggerId === 'next_step') {
-            if (!formData[1]['plan']) {
-                throw new Error(`Please select a plan`);
-            }
-        }
     }
     if (currPage === 3 && triggerId === 'next_step') {
         document.getElementById('next_step').classList.add('hidden');
@@ -205,58 +279,71 @@ const handleCardValues = (currPage, triggerId) => {
         document.getElementById('next_step').classList.remove('hidden');
         document.getElementById('confirm').classList.add('hidden');
     }
+    return true;
 }
 
+//Function to move between forms
 const moveForms = (event) => {
     const triggerId = event.target.id;
-    try {
-        if (triggerId === 'next_step') {
-            handleCardValues(currPage, triggerId);
-            currPage += 1;
-            changeProgress(currPage);
-            if (currPage <= 5) {
-                const currCard = document.getElementById(`card${currPage-1}`);
-                const nextCard = document.getElementById(`card${currPage}`);
-                currCard.classList.add('hidden');
-                currCard.classList.remove('flex');
-                nextCard.classList.add('flex');
-                nextCard.classList.remove('hidden')
-                document.getElementById('prev_step').classList.remove('hidden')
+    if (triggerId === 'next_step') {
+        if (!handleCardValues(currPage, triggerId)) {
+            return;
+        }
+        currPage += 1;
+        if (currPage === 3) {
+            if (!formData[1]['plan']) {
+                currPage = 2;
+                alert('Please choose a plan')
+                return;
             }
         }
-        if (triggerId === 'prev_step') {
-            currPage -= 1;
-            changeProgress(currPage);
-            handleCardValues(currPage, triggerId);
-            if (currPage > 0) {
-                const currCard = document.getElementById(`card${currPage+1}`);
-                const prevCard = document.getElementById(`card${currPage}`);
-                currCard.classList.add('hidden');
-                currCard.classList.remove('flex');
-                prevCard.classList.add('flex');
-                prevCard.classList.remove('hidden')
-            }
-            if (currPage === 1) {
-                document.getElementById('prev_step').classList.add('hidden')
-            }
-        }
-        if (triggerId === 'confirm') {
-            currPage += 1;
+        changeProgress(currPage);
+        if (currPage <= 5) {
             const currCard = document.getElementById(`card${currPage-1}`);
             const nextCard = document.getElementById(`card${currPage}`);
             currCard.classList.add('hidden');
             currCard.classList.remove('flex');
             nextCard.classList.add('flex');
             nextCard.classList.remove('hidden')
-            document.getElementById('prev_step').classList.remove('hidden');
-            if (currPage === 5) {
-                document.querySelector('.button_class').style.display = 'none'
-            }
+            document.getElementById('prev_step').classList.remove('invisible')
         }
-    } catch (error) {
-        alert(error);
+    }
+    if (triggerId === 'prev_step') {
+        currPage -= 1;
+        changeProgress(currPage);
+        handleCardValues(currPage, triggerId);
+        if (currPage > 0) {
+            const currCard = document.getElementById(`card${currPage+1}`);
+            const prevCard = document.getElementById(`card${currPage}`);
+            currCard.classList.add('hidden');
+            currCard.classList.remove('flex');
+            prevCard.classList.add('flex');
+            prevCard.classList.remove('hidden')
+        }
+        if (currPage === 1) {
+            document.getElementById('prev_step').classList.add('invisible')
+        }
+    }
+    if (triggerId === 'confirm') {
+        currPage += 1;
+        const currCard = document.getElementById(`card${currPage-1}`);
+        const nextCard = document.getElementById(`card${currPage}`);
+        currCard.classList.add('hidden');
+        currCard.classList.remove('flex');
+        nextCard.classList.add('flex');
+        nextCard.classList.remove('hidden')
+        document.getElementById('prev_step').classList.remove('invisible');
+        if (currPage === 5) {
+            document.querySelector('.button_class').style.display = 'none'
+        }
     }
 }
+
+//Element to add event listeners to
+
+const card1 = document.getElementById('card1');
+card1.addEventListener('click', (event) => changeInvalidBorder(event));
+
 const buttons_div = document.querySelector('.button_class');
 buttons_div.addEventListener('click', (event) => moveForms(event));
 
@@ -271,5 +358,8 @@ const serviceCheckboxes = document.querySelectorAll('.service_checkbox');
 serviceCheckboxes.forEach(checkbox => checkbox.checked = false);
 const serviceContainer = document.getElementById('card3');
 serviceContainer.addEventListener('change', (event) => handleServices(event));
+
+const changeSubscription = document.getElementById('change_subscription');
+changeSubscription.addEventListener('click', () => showSubscriptionPage());
 
 changeProgress(currPage);
