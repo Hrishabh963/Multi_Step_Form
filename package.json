@@ -5,7 +5,8 @@
         "tailwindcss": "^3.3.3"
     },
     "scripts": {
-        "start": "vite"
+        "start": "vite",
+        "build": "vite build"
     },
     "dependencies": {
         "vite": "^4.4.11"
