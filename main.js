@@ -243,13 +243,17 @@ const formCheck = (p_name, p_email, p_phone) => {
         phoneReq.classList.remove('hidden');
         phoneInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
         return false;
-    } else if (p_phone.length < 11) {
+    } else {
+        const phoneNumberRegex = /^\+\d{1,3} \d{3} \d{3} \d{4}$/;
         const phoneReq = document.getElementById('phone');
         const phoneInput = document.getElementById('p_phone');
-        phoneReq.innerText = 'Please enter a valid phone number.'
-        phoneReq.classList.remove('hidden');
-        phoneInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
-        return false;
+        if (!phoneNumberRegex.test(phoneInput.value)) {
+            phoneReq.innerText = 'Please enter a valid phone number.'
+            phoneReq.classList.remove('hidden');
+            phoneInput.classList.replace('border-Light_gray', 'border-Strawberry_red');
+            return false;
+        }
+
     }
     return true;
 }
