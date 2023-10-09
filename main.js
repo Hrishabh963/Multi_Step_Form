@@ -1,21 +1,71 @@
 const formData = [{
-        p_name: null,
-        p_email: null,
-        p_phone: null
-    }, {
-        plan: null,
-        yearlyToggle: false
-    },
-    {
-
-    }
-];
+    p_name: null,
+    p_email: null,
+    p_phone: null
+}, {
+    index: null,
+    plan: null,
+    yearlyToggle: false
+}, ];
 
 const subscriptionValues = [9, 12, 15];
-const servicePrice = [1, 2, 2];
 
-const progressCss = ['text-black', 'bg-Light_blue', 'border-Light_blue'];
+const services = ['Online service', 'Larger storage', 'Customizable profile']
+const servicePrice = [1, 2, 2];
+const serviceChecked = [false, false, false];
+
 let currPage = 1;
+
+const handleCard4 = () => {
+    let total = 0;
+    const serviceSelected = document.getElementById('service_selected');
+    const servicePriceSelected = document.getElementById('service_price_selected');
+    const servicesAdded = document.getElementById('services_added');
+    servicesAdded.innerHTML = '';
+    const tenure = formData[1]['yearlyToggle'] ? 'Yearly' : 'Monthly';
+    serviceSelected.innerText = `${formData[1]['plan']}(${tenure})`;
+    const serviceSelectedPrice = formData[1]['yearlyToggle'] ? subscriptionValues[formData[1]['index']] * 10 : subscriptionValues[formData[1]['index']];
+    const tenureString = formData[1]['yearlyToggle'] ? 'yr' : 'mo';
+    servicePriceSelected.innerText = `$${serviceSelectedPrice}`;
+    total += serviceSelectedPrice;
+    serviceChecked.forEach((isChecked, index) => {
+        if (isChecked) {
+            const price = formData[1]['yearlyToggle'] ? servicePrice[index] * 10 : servicePrice[index];
+            const priceString = `$${price}/${tenureString}`
+            const div = document.createElement('div');
+            div.classList.add(...['flex', 'h-1/3', 'w-[99%]', 'justify-between'])
+            const innerDivs = `<div class="flex flex-col basis[10%]">
+                <p>${services[index]}</p>
+            </div>
+            <div class="flex flex-wrap basis[30%]">
+                <p>${priceString}</p>
+            </div>`
+            div.innerHTML = innerDivs;
+            servicesAdded.appendChild(div);
+            total += price;
+        }
+    })
+    const totalPrice = document.getElementById('total_price');
+    totalPrice.innerText = `+${total}/${tenureString}`
+}
+
+const handleServices = (event) => {
+    if (event.target.type === 'checkbox') {
+        const serviceCheckboxes = document.querySelectorAll('.service_checkbox');
+        serviceCheckboxes.forEach((checkbox, index) => {
+            const parent = checkbox.parentElement.parentElement;
+            if (checkbox.checked) {
+                parent.classList.replace('border-Light_gray', 'border-Purplish_blue');
+                parent.classList.add('bg-Magnolia');
+                serviceChecked[index] = true;
+            } else {
+                parent.classList.replace('border-Purplish_blue', 'border-Light_gray');
+                parent.classList.remove('bg-Magnolia');
+                serviceChecked[index] = false;
+            }
+        });
+    }
+}
 
 const handleCard2 = (event) => {
     const clickedCard = event.target.closest('.subscription-card');
@@ -30,8 +80,10 @@ const handleCard2 = (event) => {
     clickedCard.classList.remove('border-Cool_gray', 'bg-White');
     clickedCard.classList.add('border-Marine_blue', 'bg-Magnolia');
 
+    const index = Number(clickedCard.dataset.index);
     const planId = clickedCard.id;
     formData[1]['plan'] = planId;
+    formData[1]['index'] = index;
 
 }
 
@@ -40,20 +92,27 @@ const handleToggle = (event) => {
     const valueParas = document.querySelectorAll('.yearly_toggle');
     const hiddenParas = document.querySelectorAll('.yearly_toggle_hidden');
     const serviceArray = document.querySelectorAll('.service_price');
+    const monthlyP = document.getElementById('monthly_p');
+    const yearlyP = document.getElementById('yearly_p');
     formData[1]['yearlyToggle'] = checked;
-
     if (checked) {
         valueParas.forEach((para, index) => para.innerText = `$${subscriptionValues[index]*10}/yr`)
         hiddenParas.forEach((para) => para.classList.remove('hidden'));
         serviceArray.forEach((para, index) => para.innerText = `+$${servicePrice[index]*10}/yr`);
+        monthlyP.classList.replace('text-Marine_blue', 'text-Cool_gray');
+        yearlyP.classList.replace('text-Cool_gray', 'text-Marine_blue');
+
     } else {
         valueParas.forEach((para, index) => para.innerText = `$${subscriptionValues[index]}/mo`)
         hiddenParas.forEach((para) => para.classList.add('hidden'));
         serviceArray.forEach((para, index) => para.innerText = `+$${servicePrice[index]}/mo`);
+        yearlyP.classList.replace('text-Marine_blue', 'text-Cool_gray');
+        monthlyP.classList.replace('text-Cool_gray', 'text-Marine_blue');
     }
 }
 
 const changeProgress = (currPage) => {
+    const progressCss = ['text-black', 'bg-Light_blue', 'border-Light_blue'];
     const progressDivs = document.getElementById('progress_bar').children;
     const progressDivArray = Array.from(progressDivs);
     if (currPage > 0 && currPage < 5) {
@@ -62,33 +121,33 @@ const changeProgress = (currPage) => {
             const nextHighlighted = progressDivArray[currPage].children.item(0);
             nextHighlighted.classList.replace(progressCss[0], 'text-White');
             nextHighlighted.classList.remove(progressCss[1]);
-            nextHighlighted.classList.replace(progressCss[2], 'border-white')
+            nextHighlighted.classList.replace(progressCss[2], 'border-White')
             highlighted.classList.replace('text-White', progressCss[0]);
             highlighted.classList.add(progressCss[1]);
-            highlighted.classList.replace('border-white', progressCss[2])
+            highlighted.classList.replace('border-White', progressCss[2])
         } else if (currPage > 1 && currPage < 4) {
             const prevHighLighted = progressDivArray[currPage - 2].children.item(0);
             const nextHighlighted = progressDivArray[currPage].children.item(0);
             const highlighted = progressDivArray[currPage - 1].children.item(0);
             prevHighLighted.classList.replace(progressCss[0], 'text-White');
             prevHighLighted.classList.remove(progressCss[1]);
-            prevHighLighted.classList.replace(progressCss[2], 'border-white')
+            prevHighLighted.classList.replace(progressCss[2], 'border-White')
             nextHighlighted.classList.replace(progressCss[0], 'text-White');
             nextHighlighted.classList.remove(progressCss[1]);
-            nextHighlighted.classList.replace(progressCss[2], 'border-white')
+            nextHighlighted.classList.replace(progressCss[2], 'border-White')
             highlighted.classList.replace('text-White', progressCss[0]);
             highlighted.classList.add(progressCss[1]);
-            highlighted.classList.replace('border-white', progressCss[2]);
+            highlighted.classList.replace('border-White', progressCss[2]);
 
         } else {
             const prevHighLighted = progressDivArray[currPage - 2].children.item(0);
             const highlighted = progressDivArray[currPage - 1].children.item(0);
             prevHighLighted.classList.replace(progressCss[0], 'text-White');
             prevHighLighted.classList.remove(progressCss[1]);
-            prevHighLighted.classList.replace(progressCss[2], 'border-white')
+            prevHighLighted.classList.replace(progressCss[2], 'border-White')
             highlighted.classList.replace('text-White', progressCss[0]);
             highlighted.classList.add(progressCss[1]);
-            highlighted.classList.replace('border-white', progressCss[2]);
+            highlighted.classList.replace('border-White', progressCss[2]);
         }
     }
 }
@@ -121,7 +180,6 @@ const handleCardValues = (currPage, triggerId) => {
             const p_phone = document.getElementById('p_phone').value;
             formCheck(p_name, p_email, p_phone)
             formData[0] = { p_name, p_email, p_phone };
-            console.log(formData[0]);
         } else {
             document.getElementById('p_name').value = formData[0]['p_name'];
             document.getElementById('p_email').value = formData[0]['p_email'];
@@ -135,6 +193,14 @@ const handleCardValues = (currPage, triggerId) => {
                 throw new Error(`Please select a plan`);
             }
         }
+    }
+    if (currPage === 3 && triggerId === 'next_step') {
+        document.getElementById('next_step').classList.add('hidden');
+        document.getElementById('confirm').classList.remove('hidden');
+        handleCard4();
+    } else if (currPage === 3 && triggerId === 'prev_step') {
+        document.getElementById('next_step').classList.remove('hidden');
+        document.getElementById('confirm').classList.add('hidden');
     }
 }
 
@@ -154,10 +220,6 @@ const moveForms = (event) => {
                 nextCard.classList.remove('hidden')
                 document.getElementById('prev_step').classList.remove('hidden')
             }
-            if (currPage === 5) {
-                // document.querySelector('.button_class').classList.remove('flex')
-                document.querySelector('.button_class').style.display = 'none'
-            }
         }
         if (triggerId === 'prev_step') {
             currPage -= 1;
@@ -175,16 +237,36 @@ const moveForms = (event) => {
                 document.getElementById('prev_step').classList.add('hidden')
             }
         }
+        if (triggerId === 'confirm') {
+            currPage += 1;
+            const currCard = document.getElementById(`card${currPage-1}`);
+            const nextCard = document.getElementById(`card${currPage}`);
+            currCard.classList.add('hidden');
+            currCard.classList.remove('flex');
+            nextCard.classList.add('flex');
+            nextCard.classList.remove('hidden')
+            document.getElementById('prev_step').classList.remove('hidden');
+            if (currPage === 5) {
+                document.querySelector('.button_class').style.display = 'none'
+            }
+        }
     } catch (error) {
         alert(error);
     }
 }
 const buttons_div = document.querySelector('.button_class');
-buttons_div.addEventListener('click', (event) => moveForms(event))
+buttons_div.addEventListener('click', (event) => moveForms(event));
 
 const checkBox = document.getElementById('checkBox');
-checkBox.addEventListener('change', (event) => handleToggle(event))
+checkBox.checked = false;
+checkBox.addEventListener('change', (event) => handleToggle(event));
 
 const cardsContainer = document.getElementById('subscription_container');
 cardsContainer.addEventListener('click', (event) => handleCard2(event));
+
+const serviceCheckboxes = document.querySelectorAll('.service_checkbox');
+serviceCheckboxes.forEach(checkbox => checkbox.checked = false);
+const serviceContainer = document.getElementById('card3');
+serviceContainer.addEventListener('change', (event) => handleServices(event));
+
 changeProgress(currPage);

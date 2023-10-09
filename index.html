@@ -11,10 +11,10 @@
 
 
 <body>
-    <main class="h-screen w-screen box-border flex flex-col desktop:bg-Light_gray desktop:justify-center desktop:items-center relative">
-        <div class="bg-Light_gray h-[90%] w-screen flex flex-col items-center desktop:bg-white desktop:flex-row desktop:w-[70%] desktop:rounded-lg desktop:p-2 desktop:h-[78%]">
-            <div class=" w-screen h-1/3 bg-cover bg-bottom bg-sidebar_mobile flex justify-center desktop:bg-sidebar_desktop desktop:h-[97%] desktop:w-[34%] desktop:rounded-lg desktop:ml-2">
-                <div id="progress_bar" class="flex w-full mobile:w-8/12 mb-32 justify-evenly mobile:justify-between desktop:h-4/6 desktop:flex-col desktop:justify-evenly desktop:mb-0">
+    <main class="h-screen items-center w-screen box-border flex flex-col desktop:bg-Light_gray desktop:justify-center desktop:items-center relative">
+        <div class="bg-Light_gray desktop:shadow-2xl h-[90%] w-screen flex flex-col items-center desktop:bg-white desktop:flex-row desktop:w-[80%] desktop:rounded-lg desktop:p-2 desktop:h-[78%]">
+            <div class=" w-screen h-1/3 bg-cover bg-bottom bg-sidebar_mobile flex justify-center desktop:bg-sidebar_desktop desktop:h-[97%] desktop:w-[58%] desktop:rounded-lg desktop:ml-2">
+                <div id="progress_bar" class="flex w-full mobile:w-8/12 mb-32 justify-evenly mobile:justify-between desktop:h-4/6 desktop:flex-col desktop:justify-evenly desktop:mb-0 items-center desktop:items-stretch">
                     <div class="desktop:flex">
                         <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-White desktop:h-12 desktop:w-12 desktop:text-xl">
                             <p>1</p>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="desktop:flex">
-                        <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-white desktop:h-12 desktop:w-12 desktop:text-xl">
+                        <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-White desktop:h-12 desktop:w-12 desktop:text-xl">
                             <p>2</p>
                         </div>
                         <div class="hidden text-sm desktop:flex desktop:flex-col">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="desktop:flex">
-                        <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-white desktop:h-12 desktop:w-12 desktop:text-xl">
+                        <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-White desktop:h-12 desktop:w-12 desktop:text-xl">
                             <p>3</p>
                         </div>
                         <div class="hidden text-sm desktop:flex desktop:flex-col">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="desktop:flex">
-                        <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-white desktop:h-12 desktop:w-12 desktop:text-xl">
+                        <div class="text-White border-2 flex justify-center items-center font-extrabold h-14 w-14 text-2xl mr-3 rounded-full border-White desktop:h-12 desktop:w-12 desktop:text-xl">
                             <p>4</p>
                         </div>
                         <div class="hidden text-sm desktop:flex desktop:flex-col">
@@ -53,10 +53,10 @@
                     </div>
                 </div>
             </div>
-            <div class="desktop:flex desktop:flex-col desktop:self-start desktop:justify-center desktop:pl-3 h-[100%] desktop:w-[100%]">
-                <div id="card1" class=" bg-white h-[90%] w-11/12 -mt-32 rounded-2xl flex flex-col p-7 desktop:ml-7 desktop:mt-0 desktop:self-start">
-                    <h2 class="h-10 text-3xl font-extrabold text-Marine_blue">Personal info</h2>
-                    <p class="text-Cool_gray text-lg w-10/12 mt-6 ">Please provide your name,email address and phone number</p>
+            <div class="static ml-[6%] min-h-fit desktop:flex desktop:relative desktop:flex-col desktop:self-start desktop:items-center desktop:pl-3 desktop:h-[100%] desktop:w-[100%]">
+                <div id="card1" class=" bg-white shadow-lg desktop:shadow-none min-h-fit desktop:h-[90%] w-11/12 -mt-32 rounded-2xl flex flex-col p-7 desktop:ml-7 desktop:mt-0 desktop:self-start">
+                    <h2 class="h-10 text-4xl font-extrabold text-Marine_blue">Personal info</h2>
+                    <p class="text-Cool_gray text-lg w-10/12 mt-6 desktop:text-base desktop:w-11/12 ">Please provide your name,email address and phone number</p>
                     <label for="Name" class="text-Marine_blue font-bold mt-6">Name</label>
                     <input type="text" name="Name" id="p_name" placeholder=" e.g Stephan King" class="border-Light_gray border-2 h-12 rounded-md p-3 ">
                     <label for="email" class="text-Marine_blue font-bold mt-6">Email Address</label>
@@ -64,137 +64,121 @@
                     <label for="phone" class="text-Marine_blue font-bold mt-6">Phone Number</label>
                     <input type="tel" name="phone" id="p_phone" placeholder=" e.g +1 234 567 890" class="border-Light_gray border-2 h-12 rounded-md p-3">
                 </div>
-                <div id="card2" class="bg-white h-[100%] w-11/12 -mt-32 rounded-2xl flex-col p-7 desktop:w-[100%] desktop:mt-0 desktop:h-[70%] hidden">
-                    <h2 class="h-10 text-3xl font-extrabold text-Marine_blue">Select Your Plan</h2>
+                <div id="card2" class="bg-white min-h-fit w-11/12 -mt-32 rounded-2xl flex-col p-7 desktop:w-[100%] desktop:mt-0 desktop:h-[70%] hidden">
+                    <h2 class="h-10 text-4xl font-extrabold text-Marine_blue">Select Your Plan</h2>
                     <p class="text-Cool_gray text-lg w-10/12 mt-6 mb-3">You have the option of monthly or yearly billing.</p>
-                    <div id="subscription_container" class="flex flex-col h-[90%] desktop:flex-row desktop:justify-between desktop:w-[86%]">
-                        <div id="arcade" class="subscription-card border border-Cool_gray bg-White rounded-md hover:border-Marine_blue h-[60%] w-11/12 items-center pl-3 flex desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
+                    <div id="subscription_container" class="flex flex-col h-[80%] desktop:flex-row desktop:justify-between desktop:w-[97%]">
+                        <div data-index="0" id="Arcade" class="subscription-card border border-Cool_gray bg-White rounded-md hover:border-Marine_blue h-fit w-11/12 items-center pl-3 flex desktop:h-fit desktop:w-[31%] desktop:flex-col desktop:items-start">
                             <div class="basis-[30%]">
                                 <img src="/assets/images/icon-arcade.svg" class="w-1/2 desktop:w-full desktop:mt-2 desktop:mb-2" alt="Arcade">
                             </div>
-                            <div class="basis-[60%] flex flex-col">
-                                <p class="text-Marine_blue font-semibold">Arcade</p>
-                                <p class="text-Cool_gray yearly_toggle">$9/month</p>
-                                <p class="text-Marine_blue hidden yearly_toggle_hidden">2 months free</p>
+                            <div class="basis-[60%] flex flex-col py-4 desktop:py-7">
+                                <p class="text-Marine_blue font-medium">Arcade</p>
+                                <p class="text-Cool_gray yearly_toggle">$9/mo</p>
+                                <p class="text-Marine_blue hidden text-sm yearly_toggle_hidden">2 months free</p>
                             </div>
                         </div>
-                        <div id="advanced" class="subscription-card border border-Cool_gray bg-White flex rounded-md hover:border-Marine_blue mt-4 h-[60%] w-11/12 items-center pl-3 desktop:mt-0 desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
+                        <div data-index="1" id="Advanced" class="subscription-card border border-Cool_gray bg-White flex rounded-md hover:border-Marine_blue mt-4 h-fit w-11/12 items-center pl-3 desktop:mt-0 desktop:h-fit desktop:w-[31%] desktop:flex-col desktop:items-start">
                             <div class="basis-[30%]">
                                 <img src="/assets/images/icon-advanced.svg" class="w-1/2 desktop:w-full desktop:mt-2 desktop:mb-2" alt="Advanced">
                             </div>
-                            <div class="basis-[60%] flex flex-col">
-                                <p class="text-Marine_blue font-semibold">Advanced</p>
-                                <p class="text-Cool_gray yearly_toggle">$12/month</p>
-                                <p class="text-Marine_blue hidden yearly_toggle_hidden">2 months free</p>
+                            <div class="basis-[60%] flex flex-col py-4 desktop:py-7">
+                                <p class="text-Marine_blue font-medium">Advanced</p>
+                                <p class="text-Cool_gray yearly_toggle">$12/mo</p>
+                                <p class="text-Marine_blue hidden text-sm yearly_toggle_hidden">2 months free</p>
                             </div>
                         </div>
-                        <div id="pro" class="subscription-card border border-Cool_gray bg-White flex rounded-md hover:border-Marine_blue mt-4 h-[80%] w-11/12 items-center pl-3 desktop:mt-0 desktop:h-[60%] desktop:w-[30%] desktop:flex-col desktop:items-start">
+                        <div data-index="2" id="Pro" class="subscription-card border border-Cool_gray bg-White flex rounded-md hover:border-Marine_blue mt-4 h-fit w-11/12 items-center pl-3 desktop:mt-0 desktop:h-fit desktop:w-[31%] desktop:flex-col desktop:items-start">
                             <div class="basis-[30%]">
                                 <img src="/assets/images/icon-pro.svg" class="w-1/2 desktop:w-full desktop:mt-2 desktop:mb-2" alt="Pro">
                             </div>
-                            <div class="basis-[60%] flex flex-col">
-                                <p class="text-Marine_blue font-semibold">Pro</p>
-                                <p class="text-Cool_gray yearly_toggle">$15/month</p>
-                                <p class="text-Marine_blue hidden yearly_toggle_hidden">2 months free</p>
+                            <div class="basis-[60%] flex flex-col py-4 desktop:py-7">
+                                <p class="text-Marine_blue font-medium">Pro</p>
+                                <p class="text-Cool_gray yearly_toggle">$15/mo</p>
+                                <p class="text-Marine_blue hidden text-sm yearly_toggle_hidden">2 months free</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex mt-8 justify-center h-20 bg-Magnolia rounded-md items-center desktop:w-[86%]">
-                        <p class="text-Marine_blue mr-5 font-semibold">Monthly</p>
+                    <div class="flex mt-8 justify-center h-20 bg-Magnolia rounded-md items-center desktop:w-[97.2%]">
+                        <p id="monthly_p" class="text-Marine_blue mr-5 font-semibold">Monthly</p>
                         <label class="switch">
                         <input type="checkbox" id="checkBox">
                         <span class="slider round"></span>
                       </label>
-                        <p class="text-Cool_gray font-semibold ml-5">Yearly</p>
+                        <p id="yearly_p" class="text-Cool_gray font-semibold ml-5">Yearly</p>
                     </div>
                 </div>
-                <div id="card3" class="bg-white h-[70%] w-12/12 -mt-32 rounded-2xl flex-col p-7 desktop:mt-0 desktop:p-14 hidden">
-                    <h2 class="h-10 text-3xl font-extrabold text-Marine_blue">Pick add-ons</h2>
+                <div id="card3" class="bg-white min-h-fit desktop:h-[70%] w-[98%] desktop:w-11/12 -mt-32 rounded-2xl flex-col p-7 desktop:mt-0 desktop:p-7 hidden">
+                    <h2 class="h-10 text-4xl font-extrabold text-Marine_blue">Pick add-ons</h2>
                     <p class="text-Cool_gray text-lg w-10/12 mt-6 mb-3">Add-ons help enhance your gaming experience</p>
-                    <div id="online_service" class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
-                        <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] checked:" name="checkbox" id="online"></div>
-                        <div class="flex basis-[50%] flex-col">
-                            <p>Online service</p>
-                            <p>Access to multiplayer games</p>
+                    <div id="online_service" class="flex mb-5 h-24 w-[101%] rounded-md border border-Light_gray">
+                        <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] service_checkbox" name="checkbox"></div>
+                        <div class="flex basis-[50%] justify-center flex-col">
+                            <p class="text-Marine_blue font-bold">Online service</p>
+                            <p class="text-Cool_gray font-light desktop:font-normal">Access to multiplayer games</p>
                         </div>
-                        <div class="flex basis-[20%]">
-                            <p class="service_price">+$1/mo</p>
-                        </div>
-                    </div>
-                    <div id="larger_storage" class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
-                        <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7]" name="checkbox" id="larger"></div>
-                        <div class="flex basis-[50%] flex-col">
-                            <p>Larger Storage</p>
-                            <p>Extra 1TB of cloud save</p>
-                        </div>
-                        <div class="flex basis-[20%]">
-                            <p class="service_price">+$2/mo</p>
+                        <div class="flex basis-[20%] justify-end items-center">
+                            <p class="service_price text-Purplish_blue">+$1/mo</p>
                         </div>
                     </div>
-                    <div id="customizable_profile" class="flex mb-5 h-1/3 w-[101%] rounded-md border border-Light_gray">
-                        <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] checked:" name="checkbox" id="customised"></div>
-                        <div class="flex basis-[50%] flex-col">
-                            <p>Customizable profile</p>
-                            <p>Custom theme on your profile</p>
+                    <div id="larger_storage" class="flex mb-5 h-24 desktop:w-[101%] rounded-md border border-Light_gray">
+                        <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] service_checkbox" name="checkbox"></div>
+                        <div class="flex basis-[50%] justify-center flex-col">
+                            <p class="text-Marine_blue font-bold">Larger Storage</p>
+                            <p class="text-Cool_gray font-light desktop:font-normal">Extra 1TB of cloud save</p>
                         </div>
-                        <div class="flex basis-[20%]">
-                            <p class="service_price">+$2/mo</p>
+                        <div class="flex basis-[20%] justify-end items-center">
+                            <p class="service_price text-Purplish_blue">+$2/mo</p>
+                        </div>
+                    </div>
+                    <div id="customizable_profile" class="flex mb-5 h-24 w-[101%] rounded-md border border-Light_gray">
+                        <div class="flex justify-center basis-[20%]"><input type="checkbox" class="scale-x-[1.7] scale-y-[1.7] service_checkbox" name="checkbox"></div>
+                        <div class="flex basis-[50%] justify-center flex-col">
+                            <p class="text-Marine_blue font-bold">Customizable profile</p>
+                            <p class="text-Cool_gray font-light desktop:font-normal">Custom theme on your profile</p>
+                        </div>
+                        <div class="flex basis-[20%] justify-end items-center">
+                            <p class="service_price text-Purplish_blue">+$2/mo</p>
                         </div>
                     </div>
                 </div>
-                <div id="card4" class="bg-white h-[60%] w-11/12 -mt-32 rounded-2xl flex-col p-7 desktop:mt-0 hidden">
-                    <h2 class="h-10 text-3xl font-extrabold text-Marine_blue">Finishing Up</h2>
+                <div id="card4" class="bg-white min-h-fit w-11/12 -mt-32 rounded-2xl flex-col p-7 desktop:mt-0 hidden">
+                    <h2 class="h-10 text-4xl font-extrabold text-Marine_blue">Finishing Up</h2>
                     <p class="text-Cool_gray text-lg w-10/12 mt-6 mb-3">Double-check everything looks OK before confirming</p>
-                    <div class="flex flex-col h-[55%] bg-Magnolia rounded-lg p-4">
-                        <div class="flex h-1/3 w-[99%] justify-between">
+                    <div class="flex flex-col min-h-fit bg-Magnolia rounded-lg p-4">
+                        <div class="flex min-h-fit w-[99%] justify-between">
                             <div class="flex flex-col basis[10%]">
-                                <p>Arcade(Monthly)</p>
+                                <p id="service_selected">Arcade(Monthly)</p>
                                 <p>Change</p>
                             </div>
                             <div class="flex flex-wrap basis[30%]">
-                                <p>$9/mo</p>
+                                <p id="service_price_selected">$9/mo</p>
                             </div>
                         </div>
                         <hr class="w-[100%] ">
-                        <div class="flex h-1/3 w-[99%]">
-                            <div class="flex h-1/3 w-[99%] justify-between">
-                                <div class="flex flex-col basis[10%]">
-                                    <p>Arcade(Monthly)</p>
-                                </div>
-                                <div class="flex flex-wrap basis[30%]">
-                                    <p>$9/mo</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex h-1/3 w-[99%]">
-                            <div class="flex h-1/3 w-[99%] justify-between">
-                                <div class="flex flex-col basis[10%]">
-                                    <p>Arcade(Monthly)</p>
-                                </div>
-                                <div class="flex flex-wrap basis[30%]">
-                                    <p>$9/mo</p>
-                                </div>
-                            </div>
+                        <div id="services_added" class="flex flex-col justify-between">
+
                         </div>
                     </div>
+
                     <div class="flex justify-between">
                         <p>Total</p>
-                        <p>$20/mo</p>
+                        <p id="total_price"></p>
                     </div>
                 </div>
-                <div id="card5" class="bg-white h-[60%] w-11/12 -mt-32 rounded-2xl flex-col items-center p-7  desktop:mt-0 hidden">
+                <div id="card5" class="bg-white min-h-fit w-11/12 -mt-32 rounded-2xl flex-col items-center p-7  desktop:mt-0 hidden">
                     <img src="/assets/images/icon-thank-you.svg" alt="Thank you">
                     <h1>Thank you!</h1>
                     <p>Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com</p>
                 </div>
-                <div class=" absolute bottom-2 flex desktop:static desktop:flex justify-between mt-[9rem] w-[60%] ml-16 self-start button_class">
-                    <div class=" flex basis-[50%] items-start justify-start">
-                        <button id="prev_step" type="button" class="text-Cool_gray px-5 py-2 mr-4 mt-4 font-bold hidden">Go back</button>
+                <div class=" absolute bottom-2 flex justify-around desktop:flex desktop:justify-between desktop:mt-[9rem]  desktop:w-[80%] desktop:bottom-10 desktop:ml-10 self-start button_class">
+                    <div class=" flex desktop:basis-[50%] items-start justify-start mr-3">
+                        <button id="prev_step" type="button" class="text-Cool_gray hover:text-Marine_blue px-5 py-2 mr-4 mt-4 font-bold hidden">Go back</button>
                     </div>
-                    <div class=" flex basis-[50%] items-start justify-end">
-                        <button id="next_step" type="button" class="bg-Marine_blue text-white text-lg px-5 py-2 rounded-md mr-4 mt-4 ">Next Step</button>
-                        <button id="confirm" type="button" class="bg-Purplish_blue text-white text-lg px-5 py-2 rounded-md mr-4 mt-4 hidden">Confirm</button>
+                    <div class=" flex desktop:basis-[50%] items-start justify-start desktop:justify-end">
+                        <button id="next_step" type="button" class="bg-Marine_blue hover:bg-blue-800 self-start text-white text-lg px-5 py-2 rounded-md mr-4 mt-4 desktop:px-7 desktop:py-2 ">Next Step</button>
+                        <button id="confirm" type="button" class="bg-Purplish_blue text-white text-lg px-5 py-2 rounded-md mr-4 mt-4 hidden desktop:px-7 desktop:py-2">Confirm</button>
                     </div>
                 </div>
             </div>
