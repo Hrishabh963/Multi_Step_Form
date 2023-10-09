@@ -27,7 +27,8 @@ const changeInvalidBorder = (event) => {
         const nameReq = document.getElementById('name_req');
         nameReq.classList.add('hidden');
         inputEle.classList.replace('border-Strawberry_red', 'border-Light_gray');
-    } else if (inputEle === 'p_email') {
+    } else if (inputEleId === 'p_email') {
+        console.log(`Here`);
         const emailReq = document.getElementById('email_req');
         emailReq.classList.add('hidden');
         inputEle.classList.replace('border-Strawberry_red', 'border-Light_gray');
