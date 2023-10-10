@@ -64,12 +64,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Inspired by the [Tailwind CSS](https://tailwindcss.com/) framework.
-- Built with love by [Your Name].
-
-## Contributing
-
-Contributions are welcome! Please follow the [Contribution Guidelines](CONTRIBUTING.md) for more details.
-
----
-
-Feel free to replace the placeholders with your actual project information, and customize the README to match the specific details of your multi-process form built with Tailwind CSS.
+- Built with love by Hrishabh963.
